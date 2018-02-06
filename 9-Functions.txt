@@ -1,0 +1,102 @@
+#1) Create a simple function without passing arguments
+name=function(){
+print("Ramesh Kummam")
+}
+name()
+#2) Create a simple function with passing arguments and does not return anything
+name=function(k){
+for(i in seq_len(k)) {
+print("Ramesh Kummam ")
+}
+}
+name(4)
+#3) Create a simple function with passing arguments and does  return 
+
+name=function(k){
+for(i in seq_len(k)) {
+x=print("Ramesh Kummam")
+}
+char=nchar(x)*k
+char
+}
+name(4)
+#4) Create a simple function with passing arguments , does  return some value and default arguments(k=1)
+name=function(k=1){
+for(i in seq_len(k)) {
+x=print("Ramesh Kummam")
+}
+char=nchar(x)*k
+char
+}
+name()
+name(4)
+#5) Lazy Evaluation
+#******************** Throw an error
+f=function(a,b){
+b^3
+}
+#******************** 
+f=function(a,b){
+a^3
+}
+f(2)
+#******************** 
+f=function(b,a){
+a^3
+}
+f(2,10)
+#******************** 
+#6) Writing a function
+meansd=function(a){
+x=sum(a)
+y=x/length(a)
+z= sd(a)
+print(y)
+print(z)
+}
+#6) Writing a function which does not return multiple values
+#******************** 
+meansd=function(a){
+x=sum(a)
+y=x/length(a)
+z= sd(a)
+return(y)
+return(z)
+}
+#******************** 
+meansd=function(a){
+x=sum(a)
+y=x/length(a)
+z= sd(a)
+y
+z
+}
+#******************** 
+#6) Invisible function
+f=function(a){
+invisible(sum(a))
+}
+f(c(1,2,3))
+#******************** 
+f=function(a){
+invisible(sum(a))
+}
+y=f(c(1,2,3))
+y
+#********************
+
+
+#6)Global and local scope : if the variable is not found it will be searched in the global scope
+a=1
+b=2
+f<-function(x)
+{
+  a*x + b
+}
+g<-function(x)
+{
+  a=2
+  b=1
+  f(x)
+}
+g(2)

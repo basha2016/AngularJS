@@ -1,0 +1,25 @@
+1.Logical 
+a<-TRUE
+class(a)
+
+2.Numeric 
+b<-12.3
+class(b)
+
+3.Intezer
+d<-2L
+class(d)
+
+4.Complex:
+x<-4+3i
+class(x)
+
+5.character
+x<-"Hello World"
+class(x)
+
+6.raw
+x<-"Data Labs"
+x<-charToRaw(x)
+class(x)
+

@@ -1,0 +1,117 @@
+#packages:scatterplot3d
+install.packages("scatterplot3d")
+install.packages("rgl")
+library("rgl")
+library("scatterplot3d")
+
+#0) File and data  Setup
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+Lungcapdata=read.table(file="C:\\Users\\hi\\Desktop\\lung.txt",header=T,sep="\t")
+Lungcapdata=read.table(file="D:\\D = drive\\Data Science\\R programming\\R Sample Code to teach\\datasets\\Lungcapdata.txt",header=T,sep="\t")
+#1) Scatter Plot
+
+#***************************************
+plot (1:20 ,1:20 , pch =1:20,col=1:20,cex=1.5)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Tilte",xlim=c(0,25),pch=17,col=3,las=1,,cex=0.5)
+abline(lm(Lungcapdata$Height~Lungcapdata$Age),lty=5,col=2,lwd=4)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Tilte",xlim=c(0,25),pch=17,col=3,las=1,cex=1.5)
+lines(smooth.spline(Lungcapdata$Height~Lungcapdata$Age),lty=5,col=4,lwd=4)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title")
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title",font.main=2)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title",font.main=2,font.lab=3)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title",font.main=2,font.lab=3)
+#***************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title",font.main=2,font.lab=3,col.main=2,col.lab=4,col.axis=6)
+#*************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,main="Title",font.main=2,font.lab=3,col.main=2,col.lab=4,col.axis=6,pch="k")
+#**************************************
+plot(Lungcapdata$Age[Lungcapdata$Gender=="male"],Lungcapdata$Height[Lungcapdata$Gender=="male"],pch="m",col=4)
+#****************************************
+plot(Lungcapdata$Age[Lungcapdata$Gender=="male"],Lungcapdata$Height[Lungcapdata$Gender=="male"],pch="m",col=4,xlab="Age",ylab="Height")
+abline(lm(Lungcapdata$Height[Lungcapdata$Gender=="male"]~Lungcapdata$Age[Lungcapdata$Gender=="male"]),col=4,lwd=5)
+points(Lungcapdata$Age[Lungcapdata$Gender=="female"],Lungcapdata$Height[Lungcapdata$Gender=="female"],pch="f",col=2)
+abline(lm(Lungcapdata$Height[Lungcapdata$Gender=="female"]~Lungcapdata$Age[Lungcapdata$Gender=="female"]),col=2,lwd=5)
+#*****************************************
+par(mfrow=c(1,2)) #Screen is divided to display two graphs
+plot(Lungcapdata$Age[Lungcapdata$Gender=="male"],Lungcapdata$Height[Lungcapdata$Gender=="male"],pch="m",col=4,xlab="Age",ylab="Height")
+abline(lm(Lungcapdata$Height[Lungcapdata$Gender=="male"]~Lungcapdata$Age[Lungcapdata$Gender=="male"]),col=4,lwd=5)
+plot(Lungcapdata$Age[Lungcapdata$Gender=="female"],Lungcapdata$Height[Lungcapdata$Gender=="female"],pch="f",col=2,xlab="Age",ylab="Height")
+abline(lm(Lungcapdata$Height[Lungcapdata$Gender=="female"]~Lungcapdata$Age[Lungcapdata$Gender=="female"]),col=2,lwd=5)
+par(mfrow=c(1,1))
+#******************************************
+plot(Lungcapdata$Age[Lungcapdata$Gender=="male"],Lungcapdata$Height[Lungcapdata$Gender=="male"],pch="m",col=4,xlab="Age",ylab="Height")
+abline(50,1,col=3,lwd=4)# intecept=50,slope=1
+#******************************************
+plot(Lungcapdata$Age,Lungcapdata$Height,xlab="Age",ylab="Height",axes=F)
+axis(side=1,at=c(7,mean(Lungcapdata$Age),15),labels=c("Child","Young","old"))#side=1 bottom
+axis(side=2,at=c(55,mean(Lungcapdata$Height),80),labels=c("short","mid","tall"))#side=2 left
+axis(side=3,at=c(7,mean(Lungcapdata$Age),15),labels=c("Child","Young","old"))#side=3 top
+axis(side=4,at=c(55,mean(Lungcapdata$Height),80),labels=c("short","mid","tall"))#side=4 bottom
+#******************************************
+scatterplot3d(Lungcapdata$Age,Lungcapdata$Height,Lungcapdata$LungCap, pch=16, highlight.3d=TRUE,type="h", main="3D Scatterplot") 
+#******************************************
+plot3d(Lungcapdata$Age,Lungcapdata$Height,Lungcapdata$LungCap, pch=16,col=2,size=3)
+
+#2) Creating Boxplot
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+boxplot(Lungcapdata$LungCap)
+boxplot(Lungcapdata$LungCap,main="Title",xlab="Luncap",ylab="Lungcap",col=2)
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke,main="Title",xlab="Luncap",ylab="Lungcap",col=2)
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke,main="Title",xlab="Luncap",ylab="Lungcap",col=c(2,4))
+boxplot(Lungcapdata$LungCap[Lungcapdata$Smoke=="no"],Lungcapdata$LungCap[Lungcapdata$Smoke=="yes"])
+boxplot(Lungcapdata$LungCap[Lungcapdata$Smoke=="no"],Lungcapdata$LungCap[Lungcapdata$Smoke=="yes"],labels=c("No","Yes"))#labelling  is not getting impacted
+#******************************************
+Agegroup=cut(Lungcapdata$Age,breaks=c(0,13,15,17,25),lables=c("<13","14-15","16-17","18+"))
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke*Agegroup)
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke*Agegroup,las=2)#las=2 generates label names vertically.
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke*Agegroup,las=2,col=c(3,2))
+#******************************************
+boxplot(Lungcapdata$LungCap~Lungcapdata$Smoke*Agegroup,las=2,col=c(3,2),axes=F) #Submit the below three commands along with it (made axes=F)
+axis(2,at=seq(0,20,1),las=1) # Change the scale of y axis
+axis(1,at=c(1.5,3.5,4.5,6.5),labels=c("<13","14-15","16-17","18+"),las=2)
+legend(x=6.5,y=4,legend=c("Non-Smoker","Smoker"),col=c(3,2),pch=17)
+box()
+#******************************************
+
+#3) Creating bar plot
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+count=table(Lungcapdata$Gender)
+percent=count/length(Lungcapdata$Gender)
+barplot(count)
+barplot(percent)
+barplot(percent,main="Title",xlab="Gender",ylab="%")
+barplot(percent,main="Title",xlab="Gender",ylab="%",las=1)#las=1 generates x-axis label names horizontally.
+barplot(percent,main="Title",xlab="Gender",ylab="%",las=1,ylim=c(0,0.5))
+barplot(percent,main="Title",xlab="Gender",ylab="%",las=1,ylim=c(0,0.5),names.arg=c("Female","Male"))
+barplot(percent,main="Title",xlab="%",ylab="Gender",las=1,xlim=c(0,0.5),names.arg=c("Female","Male"),horiz=T)#generates horizontal barplot
+barplot(percent,main="Title",xlab="%",ylab="Gender",las=1,xlim=c(0,0.5),names.arg=c("Female","Male"),horiz=T,col=c(2,4))
+box()
+#*****************************************
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+count=table(Lungcapdata$Smoke,Lungcapdata$Gender)
+barplot(count,col=c(3,2))
+barplot(count,col=c(3,2),beside = T)
+barplot(count,col=c(3,2),beside = T,legend.text=T)
+barplot(count,col=c(3,2),beside = T,legend.text=c("No-Smoker","Smoker"))
+#******************************************
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+Agegroup=cut(Lungcapdata$Age,breaks=c(0,13,15,17,25),lables=c("<13","14-15","16-17","18+"))
+x=table(Agegroup)
+barplot(x)
+#******************************************
+
+#4) Creating a Histogram
+Lungcapdata=read.table(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.txt",header=T,sep="\t")
+hist(Lungcapdata$LungCap,freq=T)#Displays frequency of items.
+hist(Lungcapdata$LungCap,freq=F)#Displays density of items
+hist(Lungcapdata$LungCap,prob=T)#Displays probability of items
+hist(Lungcapdata$LungCap,prob=T,breaks=20)#The width of each of the bar can be decided by using breaks
+hist(Lungcapdata$LungCap,prob=T,breaks=c(0,2,4,6,8,10,12,14,16))#x- axis points of each break
+hist(Lungcapdata$LungCap,prob=T,breaks=seq(0,16,by=1),col=seq(0,16,by=1),las=1)
+lines(density(Lungcapdata$LungCap),col=3,lwd=5)

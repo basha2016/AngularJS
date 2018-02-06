@@ -1,0 +1,189 @@
+	
+#1) Creating a dataframe
+a=c(1,2,3,4,NA)
+b=c(1,2,3,NA,5)
+c=c(1,2,NA,4,5)
+d=c(1,2,3,4,5)
+
+y=data.frame(a,b,c,d)	
+#2) CBIND and RBIND
+a=c(1,2,3,4,NA)
+b=c(1,2,3,NA,5)
+c=c(1,2,NA,4,5)
+d=c(1,2,3,4,5)
+y=data.frame(a,b,c,d)
+e=c(5,6,7,8,NA)
+ex=cbind(y,e)
+rx=rbind(y,e)
+cx=cbind(y,y,y)
+rx=rbind(y,y,y)
+e=c(5,6,7,8,NA)
+#3)Stack and Unstack the data
+a=c(1,2,3,4,NA)
+b=c(1,2,3,NA,5)
+c=c(1,2,NA,4,5)
+d=c(1,2,3,4,5)
+y=data.frame(a,b,c,d)
+sx=stack(y)
+ux=unstack(sx)
+#4) View data using FIX and View
+fix(y)
+View(y)
+#5) Transpose data frame
+ty=t(y) 
+#6) Accessing few elements
+head(rx)#returns top 6 rows
+tail(rx)#returns bottom 6 rows
+#6) Remove missing values
+nay=na.omit(y)
+#7)Subsetting data elements
+a=c(1,2,3,4,NA)
+b=c(1,2,3,NA,5)
+c=c(1,2,NA,4,5)
+d=c(1,2,3,4,5)
+y=data.frame(a,b,c,d)
+y[1,]
+y[c(1,2),]
+y[-c(1,2),]
+y[,1]
+y[,c(1,2)]
+y[,-c(1,2)]
+y[1,1]
+y[c(1,2),c(1,2)]
+y[-c(1,2),-c(1,2)]
+y[1:3,]
+y[,1:3]
+y[1:2,1:3]
+y[,"b"]#Output is vector
+y["b"] #Output is data frame
+y[["b"]]
+y[1:3,c("a","b")]
+y$a  #This is equivalent to y[["b"]].It is numeric vector
+y$a[1]
+y$a[c(1,2)]
+y$a[-c(1,2)]
+na.omit(y)#The corresponding rows containing na values will be removed.
+is.na(y$a) # Output is logical vector
+!is.na(y$a) #Output is logical vector
+na.omit(y$a)
+y$a[!is.na(y$a)]
+y[!is.na(y$a),]
+#8) Length and dimention of data.frame
+a=c(1,2,3,4,NA)
+b=c(1,2,3,NA,5)
+c=c(1,2,NA,4,5)
+d=c(1,2,3,4,5)
+y=data.frame(a,b,c,d)
+dim(y)
+length(y)
+
+#9) Subsetting the data using SUBSET function
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+femdata=subset(Luncapdata,Gender=="female",select=c("LungCap","Age"))
+femdata=subset(Luncapdata,Gender=="female",select=c(LungCap,Age))
+femdata=subset(Luncapdata,Gender=="female",select=-Age)
+femdata=subset(Luncapdata,Gender=="female",select=LungCap:Height)
+
+#10) Subsetting the data using WITH & SUBSET function
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+maledata=with(Luncapdata,subset(LungCap,Gender=="male"))
+maledata=with(Luncapdata,subset(Age,Gender=="male"))
+
+#11) Accesssing only male data
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+Luncapdata[Gender=="male",] #it throws an error without attachment
+maledata=Luncapdata[Luncapdata$Gender=="male",]
+maledataageover15=Luncapdata[Luncapdata$Gender=="male" & Luncapdata$Age>15,]
+
+#12) Summary Statistics
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+mean(Luncapdata$Age[Luncapdata$Gender=="male"])
+sd(Luncapdata$Age[Luncapdata$Gender=="male"])
+summary(Luncapdata$Age[Luncapdata$Gender=="male"])
+summary(Luncapdata[Luncapdata$Gender=="male" & Luncapdata$Age>15,])
+
+#13) Built-in Dataframes
+#Note:These are available in a library(datasets).Which is a built-in library.No need to load it.
+#1) Details of datasets
+library(help=datasets)
+?USArrests
+fix(USArrests)
+str(USArrests) # provides the structure of the data
+
+#14) Names
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+names(Luncapdata)
+colnames(Luncapdata)
+rownames(Luncapdata)
+names(USArrests)
+colnames(USArrests)
+rownames(USArrests)
+
+#15) Changing of names
+colnames(USArrests)=c("a","b","c","d")
+
+#16) Count of rows and columns
+nrow(USArrests)
+ncol(USArrests)
+
+#16) Logical Operations
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+Luncapdata[Luncapdata$Age>15,] #it act like filter in excel
+x=Luncapdata$Age[1:5]
+x>15
+which(x>15) # Returns the postion
+x>15 & x<20
+which(x>15 & x<20)# Returns the postion
+y=x>15
+as.numeric(y) #returns 0,1
+a=head(Luncapdata)
+a$Gender=='male'& a$Smoke=='yes'
+as.numeric(a$Gender=='male'& a$Smoke=='yes')
+malesmoke=as.numeric(a$Gender=='male'& a$Smoke=='yes')
+
+#17)CBIND with Logical Column
+Luncapdata=read.csv(file="C:/Users/Ramesh/Desktop/R Project/Lungcapdata.csv",header=T)
+a=head(Luncapdata)
+malesmoke=a$Gender=='male'& a$Smoke=='yes'
+y=cbind(a,malesmoke) # Both the lengths should be equal
+head(y)
+FemSmoke=as.numeric(a$Gender=='female'& a$Smoke=='yes')
+z=cbind(a,FemSmoke) # Both the lengths should be equal
+head(z)
+#18) Transforming the data into factors
+library(datasets)
+head(airquality)
+str(airquality)
+airquality=transform(airquality,Month=factor(Month))
+str(airquality)
+
+
+#18)Converting a column to row name
+#********************
+IRIS=read.table(file="G:\\R Code files\\R Data Sets\\IRIS-PCA.csv",header=T,sep=",")
+IRIS
+IRIS1=as.matrix(IRIS[,2:5])
+rownames(IRIS1)=IRIS[,1]
+IRIS1
+#***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

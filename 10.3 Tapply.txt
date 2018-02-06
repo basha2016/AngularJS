@@ -1,0 +1,7 @@
+#Note It is applicable to Vectors only
+name=c("jack","sam","John","Paul","frank","cris")
+section=c("a","b","b","a","a","b")
+marks=c(96,99,94,96,98,96)
+class=data.frame(name,section,marks)
+tapply(class$marks,class$section,sum)
+

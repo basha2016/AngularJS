@@ -1,0 +1,96 @@
+# A list is a collecction of objects(Collection of vectors/data frame matrices etc) of mixed data types
+
+#1) List Creation
+a=c(1,2,3)
+b=c("x","y")
+m=matrix(1:9,nrow=3)
+List1=list(a,b,m)
+List2=list(a=a,e=b,k=m)
+
+#2) Accessing vector/matrix etc
+List1[1]
+List1[2]
+List1[3]
+List1[c(1,2)] #Return 1st and 2nd objects of the list
+
+#3) Accessing the vector/Matrix without sqare brackets (Ex:[[1]]) in the Output
+List1[[1]]
+List1[[2]]
+List1[[3]]
+
+#3a)Accessing sub elements of the objects of List
+List1[[c(1,2)]] # Returns second element of 1st object
+List1[[c(2,2)]] # Returns second element of second object
+List1[[c(3,8)]] # Returns row wise 8th element of 3rd  object which is a matrix
+
+
+#4)Accessing data element of  vector/Matrix  which are part of list
+List1[[1]]
+List1[[1]][c(2,3)]
+List1[[1]][-c(2,3)]
+List1[[3]][1,]
+List1[[3]][1,2]
+List1[[3]][c(1,2),]
+
+#5)Modify the list
+List1[[1]]=c(2,4,6)
+List1[[1]][c(2,3)]=c(4,8)
+List1[[1]][-c(2,3)]=10
+List1[[3]][1,]=c(2,8,14)
+List1[[3]][1,2]=40
+List1[[3]][c(1,2),]=c(10,20,30,40,50,60)
+List1[[3]][c(1,2),]=matrix(c(10,20,30,40,50,60),nrow=2)  #(above statements will give the same result)
+
+#6)Naming the list members
+List1=list(a=c(1,2,3),b=c("x","y"),m=matrix(1:9,nrow=3))
+
+#7) Accessing vector/matrix with names etc
+List1["a"]
+List1["b"]
+List1["m"]
+
+#8) Accessing the vector/Matrix without names  in the Output
+List1[['a']]
+List1[['b']]
+List1[['m']]
+
+#9) Accessing data element of  vector/Matrix  which are part of list with names
+List1=list(a=c(1,2,3),b=c("x","y"),m=matrix(1:9,nrow=3))
+List1["a"]
+List1[["a"]]
+List1[["a"]][c(2,3)]
+List1[["a"]][-c(2,3)]
+List1[["m"]][1,]
+List1[["m"]][1,2]
+List1[["m"]][c(1,2),]
+
+#10) Accessing the list members with $
+List1$a
+List1$b
+List1$m
+#Accessing the elements of list members with $
+List1$a[2]
+List1$b[1]
+List1$m[,2]
+
+#11)Unlist the list: unlist produces a vector which contains all the atomic components which occur in x
+unlist(List1)
+
+#12) Lenght and names of list
+length(List1)
+names(List1)
+
+#13)Attach and Detach a list
+attach(List1)
+a
+b
+m
+detach(List1)
+
+
+
+
+
+
+
+

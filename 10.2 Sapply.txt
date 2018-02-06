@@ -1,0 +1,13 @@
+#Note: It is similar to lapply.But it return a vector if output length=1 else matrix/list.
+#1) Returning a vector of length=2
+x=list(a=rnorm(10),b=c(1:10))
+sapply(x,mean)
+#2) Returning a list if length>1
+mat1=matrix(1:9,nrow=3)
+mat2=matrix(11:19,nrow=3)
+mat=list(mat1,mat2)
+x=sapply(mat,function(a){10*a})
+
+
+
+

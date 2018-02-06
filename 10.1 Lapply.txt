@@ -1,0 +1,19 @@
+#Note: It is applicable for list and it converts any class to list and then apply "lapply".The output is always list.
+#1) lappy to summary statistics
+x=list(a=c(1:5),b=c(10:20))
+lapply(x,sum)
+lapply(x,summary)
+x=list(a=c(1:5),b=c(10:20),c=c("s","t"))
+lapply(x,sum) # Throws an error
+lapply(x,summary)
+#2) Passing other argumnets to the function
+y=1:4
+lapply(y,runif)
+lapply(y,runif,min=1,max=10)
+
+
+
+
+
+
+

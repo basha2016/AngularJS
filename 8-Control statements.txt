@@ -1,0 +1,186 @@
+
+#Note:Control structures in R allow you to control the flow of execution of a series of R expressions.
+#1) Any 
+a=2
+b=10
+c=c(1:4)
+any(a>c)
+any(a>b)
+all(c<b)
+all(c<a)
+all(a>c)
+all(b>c)
+
+
+#2) If and else statement
+#*******************
+a=12
+b=39
+if(a<b){
+a+10
+}
+#*******************
+a=12
+b=39
+if(a<b)
+{
+a+10
+} else 
+{ 
+b+10
+}
+#*******************
+a=12
+b=39
+if(a<b){
+a+10
+} else if(a>b) { 
+b+10
+} else {
+a+b
+}
+#*******************
+a=12
+b=39
+if(a>b){
+a+10
+} else if(a<b) { 
+b+10
+} else {
+a+b
+}
+#*******************
+a=12
+b=39
+if(a>b){
+a+10
+} else if(a==0) { 
+b+10
+} else {
+a+b
+}
+#*******************
+a=12
+b=39
+if(a>b){
+a+10
+} 
+if(a<b) { 
+b+10
+} 
+#*********************
+
+ if else statement
+a=12
+b=39
+ifelse(a>b,a+1,b+2)
+#******************
+
+#3) For loop 
+#******************
+for(i in c(1:20)){
+print(i)
+}
+#*****************
+x=c("a","b","c","d")
+for(i in c(1:4)){
+print(x[i])
+}
+#*****************
+x=c("a","b","c","d")
+for(i in seq_along(x)){
+print(x[i])
+}
+#*****************
+x=c("a","b","c","d")
+for(letter in x){
+print(letter)
+}
+#*****************
+for(i in c(1:20)){
+if(i%%2==0)
+print(i)
+}
+#******************Without braces
+x=c("a","b","c","d")
+for(i in seq_along(x)) print(x[[i]])
+
+#******************
+for(i in seq(1,10,by=1)){
+if(i%%2==0)
+print(i) 
+}
+
+#*********************
+x=matrix(1:9,nrow=3)
+x
+for(i in seq_len(nrow(x))){
+for(j in seq_len(ncol(x))){
+print (x[i,j])
+}
+#********************
+#4) WHILE  Loop
+i=0
+while(i<10){
+print(i)
+i=i+1
+}
+#********************
+i=0
+while(i<10){
+i=i+1
+print(i)
+}
+#********************
+x=3
+y=5
+while(x>=3 && x<=10){
+if(x>y){
+ print("x greater than y")} else {
+print("x less than Y")
+}
+x=x+1
+}
+#********************
+#5) Break
+for(i in c(1:20)){
+if(i%%2==0)
+print(i)
+if(i>10)
+break
+}
+#********************
+#5)Next
+for(i in c(1:20)){
+if(i%%2==0){
+next
+print(i)
+}
+if(i>10){
+print(i)
+break
+}
+}
+
+#6 switch
+switch(2,"red","green","blue")
+
+#7 switch 
+number1 <- 30
+number2 <- 20
+operator <- "+"
+
+switch(operator,
+       "+" = print(paste("Addition of two numbers is: ", number1 + number2)),
+       "-" = print(paste("Subtraction of two numbers is: ", number1 - number2)),
+       "*" = print(paste("Multiplication of two numbers is: ", number1 * number2)),
+       "^" = print(paste("Exponent of two numbers is: ", number1 ^ number2)),
+       "/" = print(paste("Division of two numbers is: ", number1 / number2)),
+       "%/%" = print(paste("Integer Division of two numbers is: ", number1 %/% number2)),
+       "%%" = print(paste("Division of two numbers is: ", number1 %% number2)),
+	print("default") # Default Statement
+)
+
+#7 switch
+switch(2,"red","green","blue")
+

@@ -1,0 +1,9 @@
+# Create a vector as input
+data <- c("East","West","East","North","North","East","West","West","West","East","North")
+# Apply the factor function.
+
+factor_data <- factor(data)
+#levels gives us the unique values in the data set
+levels(factor_data)
+# table gives us frequency of individual items
+table(factor_data)
